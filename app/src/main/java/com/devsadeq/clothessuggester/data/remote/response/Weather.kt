@@ -1,4 +1,4 @@
-package com.devsadeq.clothessuggester.data.model
+package com.devsadeq.clothessuggester.data.remote.response
 
 data class Weather(
     val description: String,
