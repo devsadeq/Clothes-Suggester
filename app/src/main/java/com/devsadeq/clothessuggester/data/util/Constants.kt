@@ -10,5 +10,4 @@ object Constants {
     const val LON_QUERY = "lon"
     const val UNITS_QUERY = "units"
     const val APPID_QUERY = "appid"
-    const val STANDARD_UNITS = "standard"
 }
