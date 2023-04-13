@@ -1,4 +1,4 @@
-package com.devsadeq.clothessuggester.data.model
+package com.devsadeq.clothessuggester.data.remote.response
 
 data class Main(
     val feels_like: Double,
