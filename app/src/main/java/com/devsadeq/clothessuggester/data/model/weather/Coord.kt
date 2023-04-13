@@ -1,4 +1,4 @@
-package com.devsadeq.clothessuggester.data.remote.response
+package com.devsadeq.clothessuggester.data.model.weather
 
 data class Coord(
     val lat: Double,

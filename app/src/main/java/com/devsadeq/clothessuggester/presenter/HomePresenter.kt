@@ -1,7 +1,7 @@
 package com.devsadeq.clothessuggester.presenter
 
-import com.devsadeq.clothessuggester.data.remote.response.WeatherResponse
-import com.devsadeq.clothessuggester.data.remote.service.WeatherApiServiceImpl
+import com.devsadeq.clothessuggester.data.model.weather.WeatherResponse
+import com.devsadeq.clothessuggester.data.remote.WeatherApiServiceImpl
 
 class HomePresenter(
     private val view: IHomeView,

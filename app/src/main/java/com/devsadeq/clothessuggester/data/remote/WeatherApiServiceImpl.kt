@@ -1,6 +1,6 @@
-package com.devsadeq.clothessuggester.data.remote.service
+package com.devsadeq.clothessuggester.data.remote
 
-import com.devsadeq.clothessuggester.data.remote.response.WeatherResponse
+import com.devsadeq.clothessuggester.data.model.weather.WeatherResponse
 import com.devsadeq.clothessuggester.data.util.Constants.LAT_QUERY
 import com.devsadeq.clothessuggester.data.util.Constants.LON_QUERY
 import com.devsadeq.clothessuggester.data.util.Constants.UNITS_QUERY
