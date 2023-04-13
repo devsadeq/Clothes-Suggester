@@ -1,18 +1,18 @@
-package com.devsadeq.clothessuggester.data.util
+package com.devsadeq.clothessuggester.data.remote
 
 import com.devsadeq.clothessuggester.BuildConfig
-import com.devsadeq.clothessuggester.data.util.Constants.APPID_QUERY
-import com.devsadeq.clothessuggester.data.util.Constants.DATA_PATH
-import com.devsadeq.clothessuggester.data.util.Constants.HOST
-import com.devsadeq.clothessuggester.data.util.Constants.SCHEME
-import com.devsadeq.clothessuggester.data.util.Constants.VERSION_PATH
-import com.devsadeq.clothessuggester.data.util.Constants.WEATHER_PATH
+import com.devsadeq.clothessuggester.util.Constants.APPID_QUERY
+import com.devsadeq.clothessuggester.util.Constants.DATA_PATH
+import com.devsadeq.clothessuggester.util.Constants.HOST
+import com.devsadeq.clothessuggester.util.Constants.SCHEME
+import com.devsadeq.clothessuggester.util.Constants.VERSION_PATH
+import com.devsadeq.clothessuggester.util.Constants.WEATHER_PATH
 import okhttp3.HttpUrl
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 
 class WeatherApiClient private constructor() {
-    var client: OkHttpClient = OkHttpClient()
+    val client: OkHttpClient = OkHttpClient()
     private val httpUrlBuilder: HttpUrl.Builder = HttpUrl.Builder()
 
     init {
@@ -32,7 +32,7 @@ class WeatherApiClient private constructor() {
     private fun setLoggingInterceptor() {
         val logging = HttpLoggingInterceptor()
         logging.setLevel(HttpLoggingInterceptor.Level.BODY)
-        client = OkHttpClient.Builder()
+        client.newBuilder()
             .addInterceptor(logging)
             .build()
     }

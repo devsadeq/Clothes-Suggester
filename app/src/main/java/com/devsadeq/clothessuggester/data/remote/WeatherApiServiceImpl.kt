@@ -1,10 +1,9 @@
 package com.devsadeq.clothessuggester.data.remote
 
 import com.devsadeq.clothessuggester.data.model.weather.WeatherResponse
-import com.devsadeq.clothessuggester.data.util.Constants.LAT_QUERY
-import com.devsadeq.clothessuggester.data.util.Constants.LON_QUERY
-import com.devsadeq.clothessuggester.data.util.Constants.UNITS_QUERY
-import com.devsadeq.clothessuggester.data.util.WeatherApiClient
+import com.devsadeq.clothessuggester.util.Constants.LAT_QUERY
+import com.devsadeq.clothessuggester.util.Constants.LON_QUERY
+import com.devsadeq.clothessuggester.util.Constants.UNITS_QUERY
 import com.google.gson.Gson
 import okhttp3.Call
 import okhttp3.Request

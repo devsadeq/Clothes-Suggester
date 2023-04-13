@@ -1,4 +1,4 @@
-package com.devsadeq.clothessuggester.data.util
+package com.devsadeq.clothessuggester.util
 
 object Constants {
     const val SCHEME = "https"
@@ -10,4 +10,6 @@ object Constants {
     const val LON_QUERY = "lon"
     const val UNITS_QUERY = "units"
     const val APPID_QUERY = "appid"
+
+    const val SHARED_PREF_NAME = "ClothesSuggesterSharedPref"
 }
