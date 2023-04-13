@@ -20,7 +20,7 @@ class WeatherApiServiceImpl : WeatherApiService {
         lon: Double,
         units: String,
         onCurrentWeatherSuccess: (WeatherResponse) -> Unit,
-        onCurrentWeatherFailure: (Throwable) -> Unit,
+        onCurrentWeatherFailure: (String) -> Unit,
     ) {
         val url = weatherApiClient.getHttpUrlBuilder()
             .addQueryParameter(LAT_QUERY, lat.toString())
@@ -36,7 +36,7 @@ class WeatherApiServiceImpl : WeatherApiService {
             .newCall(request)
             .enqueue(object : okhttp3.Callback {
                 override fun onFailure(call: Call, e: IOException) {
-                    onCurrentWeatherFailure(e)
+                    onCurrentWeatherFailure(e.message.toString())
                 }
 
                 override fun onResponse(call: Call, response: Response) {
