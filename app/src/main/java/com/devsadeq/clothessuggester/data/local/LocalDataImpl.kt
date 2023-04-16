@@ -2,9 +2,9 @@ package com.devsadeq.clothessuggester.data.local
 
 import android.content.SharedPreferences
 
-class SharedPreferencesServiceImpl(
+class LocalDataImpl(
     private val sharedPreferences: SharedPreferences
-) : SharedPreferencesService {
+) : LocalData {
 
     companion object {
         const val TWO_DAYS = 2 * 24 * 60 * 60 * 1000
