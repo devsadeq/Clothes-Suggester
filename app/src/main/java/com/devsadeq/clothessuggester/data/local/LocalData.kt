@@ -1,7 +1,11 @@
 package com.devsadeq.clothessuggester.data.local
 
-interface LocalData {
-    fun saveClothing(id: String, lastTimeWorn: Long)
+import com.devsadeq.clothessuggester.data.model.Outfit
 
-    fun isClothingWornInLastTwoDays(id: String): Boolean
+interface LocalData {
+    fun saveSuggestedOutfit(id: String, lastTimeWorn: Long)
+
+    fun getSuggestedOutfit(temperature: Double): Outfit?
+
+    fun isOutfitWornInLastTwoDays(id: String): Boolean
 }

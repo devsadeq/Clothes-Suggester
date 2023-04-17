@@ -1,6 +1,7 @@
 package com.devsadeq.clothessuggester.data.model
 
-data class Clothing(
+data class Outfit(
     val id: String,
     val imageResource: Int,
+    val temperature: IntRange,
 )
