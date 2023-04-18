@@ -11,7 +11,6 @@ import okhttp3.Response
 import java.io.IOException
 
 class WeatherApiServiceImpl : WeatherApiService {
-    private val weatherApiClient = WeatherApiClient.getInstance()
     private val gson = Gson()
 
     override fun getCurrentWeather(
@@ -21,7 +20,7 @@ class WeatherApiServiceImpl : WeatherApiService {
         onCurrentWeatherSuccess: (WeatherResponse) -> Unit,
         onCurrentWeatherFailure: (String) -> Unit,
     ) {
-        val url = weatherApiClient.getHttpUrlBuilder()
+        val url = WeatherApiClient.getHttpUrlBuilder()
             .addQueryParameter(LAT_QUERY, lat.toString())
             .addQueryParameter(LON_QUERY, lon.toString())
             .addQueryParameter(UNITS_QUERY, units)
@@ -31,7 +30,7 @@ class WeatherApiServiceImpl : WeatherApiService {
             .url(url)
             .build()
 
-        weatherApiClient.client
+        WeatherApiClient.client
             .newCall(request)
             .enqueue(object : okhttp3.Callback {
                 override fun onFailure(call: Call, e: IOException) {
