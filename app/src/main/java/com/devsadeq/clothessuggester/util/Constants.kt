@@ -12,4 +12,6 @@ object Constants {
     const val APPID_QUERY = "appid"
 
     const val SHARED_PREF_NAME = "ClothesSuggesterSharedPref"
+    const val NO_OUTFIT_AVAILABLE =
+        "You have worn all the outfits available, please add more outfits"
 }
