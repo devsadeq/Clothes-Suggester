@@ -15,6 +15,15 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        def localProperties = new Properties()
+        def localPropertiesFile = rootProject.file('local.properties')
+        if (localPropertiesFile.exists()) {
+            localPropertiesFile.withReader('UTF-8') { reader ->
+                localProperties.load(reader)
+            }
+        }
+        buildConfigField "String", "API_KEY", localProperties['API_KEY']
     }
 
     buildTypes {
@@ -30,6 +39,9 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -41,4 +53,18 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+    def okHttpVersion = "4.10.0"
+
+    // OkHttp
+    implementation "com.squareup.okhttp3:okhttp:$okHttpVersion"
+
+    // Logging Interceptor
+    implementation "com.squareup.okhttp3:logging-interceptor:$okHttpVersion"
+
+    // Gson
+    implementation 'com.google.code.gson:gson:2.10.1'
+
+    // Glide
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
 }
