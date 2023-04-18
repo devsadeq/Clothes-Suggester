@@ -11,7 +11,7 @@ import okhttp3.HttpUrl
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 
-class WeatherApiClient private constructor() {
+object WeatherApiClient {
     private val logging = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
     private val httpUrlBuilder = HttpUrl.Builder()
     val client = OkHttpClient().newBuilder()
@@ -26,16 +26,5 @@ class WeatherApiClient private constructor() {
             .addPathSegment(VERSION_PATH)
             .addPathSegment(WEATHER_PATH)
             .addQueryParameter(APPID_QUERY, BuildConfig.API_KEY)
-    }
-
-    companion object {
-        private var instance: WeatherApiClient? = null
-
-        fun getInstance(): WeatherApiClient {
-            if (instance == null) {
-                instance = WeatherApiClient()
-            }
-            return instance!!
-        }
     }
 }
