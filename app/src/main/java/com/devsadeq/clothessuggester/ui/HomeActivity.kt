@@ -10,6 +10,7 @@ import com.devsadeq.clothessuggester.data.model.weather.WeatherResponse
 import com.devsadeq.clothessuggester.data.remote.WeatherApiServiceImpl
 import com.devsadeq.clothessuggester.databinding.ActivityHomeBinding
 import com.devsadeq.clothessuggester.util.Constants.SHARED_PREF_NAME
+import com.devsadeq.clothessuggester.util.loadImageFromUrl
 
 class HomeActivity : AppCompatActivity(), HomeView {
     private val weatherApiService by lazy { WeatherApiServiceImpl() }
@@ -27,12 +28,15 @@ class HomeActivity : AppCompatActivity(), HomeView {
         homePresenter.getCurrentWeather(BAGHDAD_LAT, BAGHDAD_LON, UNITS_METRIC)
     }
 
-    override fun showCurrentWeatherTemperature(weatherResponse: WeatherResponse) {
-        val temperature = weatherResponse.main.temp
+    override fun showCurrentWeatherData(weatherResponse: WeatherResponse) {
         runOnUiThread {
-            binding.textViewTemperature.text = temperature.toString()
+            binding.apply {
+                textViewTemperature.text =
+                    weatherResponse.main.temp.toInt().toString() + CELSIUS_SYMBOL
+                textViewState.text = weatherResponse.weather.first().description
+                imageViewIcon.loadImageFromUrl(IMAGE_BASE_URL + weatherResponse.weather.first().icon + IMAGE_EXTENSION)
+            }
         }
-
     }
 
     override fun showError(message: String) {
@@ -60,9 +64,11 @@ class HomeActivity : AppCompatActivity(), HomeView {
     }
 
     companion object {
-        const val TAG = "HomeActivity"
         const val BAGHDAD_LAT = 33.34
         const val BAGHDAD_LON = 44.4
         const val UNITS_METRIC = "metric"
+        const val IMAGE_BASE_URL = "https://openweathermap.org/img/wn/"
+        const val IMAGE_EXTENSION = ".png"
+        const val CELSIUS_SYMBOL = "°C"
     }
 }
