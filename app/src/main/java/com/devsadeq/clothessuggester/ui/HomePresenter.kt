@@ -1,9 +1,9 @@
 package com.devsadeq.clothessuggester.ui
 
 import com.devsadeq.clothessuggester.data.local.LocalDataImpl
-import com.devsadeq.clothessuggester.data.model.Outfit
 import com.devsadeq.clothessuggester.data.model.weather.WeatherResponse
 import com.devsadeq.clothessuggester.data.remote.WeatherApiService
+import com.devsadeq.clothessuggester.util.Constants.NO_OUTFIT_AVAILABLE
 
 class HomePresenter(
     private val view: HomeView,
@@ -16,29 +16,29 @@ class HomePresenter(
         lon: Double,
         units: String,
     ) {
-        showLoading()
+        view.showLoading()
         weatherService.getCurrentWeather(
             lat,
             lon,
             units,
-            ::showCurrentWeatherTemperature,
-            ::showNetworkErrorMessage
+            ::onWeatherResponseSuccess,
+            ::onWeatherResponseFailure
         )
     }
 
-    private fun showCurrentWeatherTemperature(weatherResponse: WeatherResponse) {
-        hideLoading()
+    private fun onWeatherResponseSuccess(weatherResponse: WeatherResponse) {
+        view.hideLoading()
         getSuggestedOutfit(weatherResponse.main.temp)
-        view.showCurrentWeatherTemperature(weatherResponse)
+        view.showCurrentWeatherData(weatherResponse)
     }
 
-    private fun showNetworkErrorMessage(message: String) {
-        hideLoading()
+    private fun onWeatherResponseFailure(message: String) {
+        view.hideLoading()
         view.showError(message)
     }
 
     private fun showAllOutfitsWornErrorMessage() {
-        view.showError("All outfits are worn in last two days")
+        view.showError(NO_OUTFIT_AVAILABLE)
     }
 
     private fun getSuggestedOutfit(temperature: Double) {
@@ -46,20 +46,8 @@ class HomePresenter(
         if (suggestedOutfit == null) {
             showAllOutfitsWornErrorMessage()
         } else {
-            showSuggestedOutfit(suggestedOutfit)
+            view.showSuggestedOutfit(suggestedOutfit)
         }
-    }
-
-    private fun showSuggestedOutfit(outfit: Outfit) {
-        view.showSuggestedOutfit(outfit)
-    }
-
-    private fun showLoading() {
-        view.showLoading()
-    }
-
-    private fun hideLoading() {
-        view.hideLoading()
     }
 
 }
